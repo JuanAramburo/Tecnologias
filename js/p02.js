@@ -7,7 +7,7 @@ const tbody = document.getElementById("tbody");
 btnBuscar.addEventListener('click', buscar);
 btnLimpiar.addEventListener('click', limpiar);
 
-function buscar() {
+function buscar(){
     const Id = document.getElementById("idjson").value;
 
     if(!Id){
@@ -21,12 +21,12 @@ function buscar() {
     http.send();
 
     http.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {
+        if(this.readyState == 4 && this.status == 200){
             const datos = JSON.parse(this.responseText);
 
             const datosid = datos.filter(item => item.id == parseInt(Id));
 
-            if (datosid.length > 0) {
+            if(datosid.length > 0){
                 datosid.forEach(item => {
                     const fila = document.createElement('tr');
                     
@@ -64,18 +64,17 @@ function buscar() {
 
                     tbody.appendChild(fila);
                 });
-
                 mensaje.innerHTML = "Datos cargados correctamente ";
-            } else {
+            }else{
                 mensaje.innerHTML = "ID incorrecta o no encontrada ";
             }
-        } else if (this.readyState == 4) {
+        }else if(this.readyState == 4){
             mensaje.innerHTML = "Ocurrió un error al realizar la búsqueda.";
         }
     };
 }
 
-function limpiar() {
+function limpiar(){
     tbody.innerHTML = "";
     mensaje.innerHTML = "";
 }
