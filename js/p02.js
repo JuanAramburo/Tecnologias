@@ -8,6 +8,7 @@ btnBuscar.addEventListener('click', buscar);
 btnLimpiar.addEventListener('click', limpiar);
 
 function buscar(){
+    limpiar();
     const Id = document.getElementById("idjson").value;
 
     if(!Id){
