@@ -47,7 +47,7 @@ function buscar(){
                     fila.appendChild(columna4);
 
                     const columna5 = document.createElement('td');
-                    columna5.textContent = `${item.address.street}, ${item.address.suite}, ${item.address.city}, ${item.address.zipcode}`;
+                    columna5.textContent = `${item.address.street}, ${item.address.suite}, ${item.address.city}, ${item.address.zipcode}, ${item.address.geo.lat}, ${item.address.geo.lng}`;
                     fila.appendChild(columna5);
 
                     const columna6 = document.createElement('td');
@@ -59,7 +59,7 @@ function buscar(){
                     fila.appendChild(columna7);
 
                     const columna8 = document.createElement('td');
-                    columna8.textContent = `${item.company.name}, ${item.company.catchPhrase}`;
+                    columna8.textContent = `${item.company.name}, ${item.company.catchPhrase}, ${item.company.bs}`;
                     fila.appendChild(columna8);
 
                     tbody.appendChild(fila);
