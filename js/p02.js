@@ -25,8 +25,6 @@ function buscar(){
         if(this.readyState == 4 && this.status == 200){
             const datos = JSON.parse(this.responseText);
 
-            // const datosid = datos.filter(item => item.id == parseInt(Id));
-
             if(datos && datos.id ){
                     const fila = document.createElement('tr');
                     
