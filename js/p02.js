@@ -7,7 +7,8 @@ const tbody = document.getElementById("tbody");
 btnBuscar.addEventListener('click', buscar);
 btnLimpiar.addEventListener('click', limpiar);
 
-function buscar() {
+function buscar(){
+    limpiar();
     const Id = document.getElementById("idjson").value;
 
     if(!Id){
@@ -16,7 +17,7 @@ function buscar() {
     }
 
     const http = new XMLHttpRequest();
-    const url = "https://jsonplaceholder.typicode.com/users";
+    const url = "https://jsonplaceholder.typicode.com/albums/" + Id;
     http.open('GET', url, true);
     http.send();
 
@@ -24,54 +25,30 @@ function buscar() {
         if (this.readyState == 4 && this.status == 200) {
             const datos = JSON.parse(this.responseText);
 
-            const datosid = datos.filter(item => item.id == parseInt(Id));
+            // const datosid = datos.filter(item => item.id == parseInt(Id));
 
-            if (datosid.length > 0) {
-                datosid.forEach(item => {
+            if (datos && datos.id) {
                     const fila = document.createElement('tr');
                     
                     const columna1 = document.createElement('td');
-                    columna1.textContent = item.id;
+                    columna1.textContent = datos.userId;
                     fila.appendChild(columna1);
 
                     const columna2 = document.createElement('td');
-                    columna2.textContent = item.name;
+                    columna2.textContent = datos.id;
                     fila.appendChild(columna2);
 
                     const columna3 = document.createElement('td');
-                    columna3.textContent = item.username;
+                    columna3.textContent = datos.title;
                     fila.appendChild(columna3);
 
-                    const columna4 = document.createElement('td');
-                    columna4.textContent = item.email;
-                    fila.appendChild(columna4);
-
-                    const columna5 = document.createElement('td');
-                    columna5.textContent = `${item.address.street}, ${item.address.suite}, ${item.address.city}, ${item.address.zipcode}`;
-                    fila.appendChild(columna5);
-
-                    const columna6 = document.createElement('td');
-                    columna6.textContent = item.phone;
-                    fila.appendChild(columna6);
-
-                    const columna7 = document.createElement('td');
-                    columna7.textContent = item.website;
-                    fila.appendChild(columna7);
-
-                    const columna8 = document.createElement('td');
-                    columna8.textContent = `${item.company.name}, ${item.company.catchPhrase}`;
-                    fila.appendChild(columna8);
-
                     tbody.appendChild(fila);
-                });
+                };
 
                 mensaje.innerHTML = "Datos cargados correctamente ";
             } else {
-                mensaje.innerHTML = "ID incorrecta o no encontrada ";
+                mensaje.innerHTML = "Ocurrió un error al realizar la búsqueda.";
             }
-        } else if (this.readyState == 4) {
-            mensaje.innerHTML = "Ocurrió un error al realizar la búsqueda.";
-        }
     };
 }
 
