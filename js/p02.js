@@ -22,12 +22,13 @@ function buscar(){
     http.send();
 
     http.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {
+        if(this.readyState == 4 && this.status == 200){
             const datos = JSON.parse(this.responseText);
 
             // const datosid = datos.filter(item => item.id == parseInt(Id));
 
-            if (datos && datos.id) {
+            if(datosid.length > 0){
+                datosid.forEach(item => {
                     const fila = document.createElement('tr');
                     
                     const columna1 = document.createElement('td');
@@ -42,17 +43,39 @@ function buscar(){
                     columna3.textContent = datos.title;
                     fila.appendChild(columna3);
 
-                    tbody.appendChild(fila);
-                };
+                    const columna4 = document.createElement('td');
+                    columna4.textContent = item.email;
+                    fila.appendChild(columna4);
 
+                    const columna5 = document.createElement('td');
+                    columna5.textContent = `${item.address.street}, ${item.address.suite}, ${item.address.city}, ${item.address.zipcode}, ${item.address.geo.lat}, ${item.address.geo.lng}`;
+                    fila.appendChild(columna5);
+
+                    const columna6 = document.createElement('td');
+                    columna6.textContent = item.phone;
+                    fila.appendChild(columna6);
+
+                    const columna7 = document.createElement('td');
+                    columna7.textContent = item.website;
+                    fila.appendChild(columna7);
+
+                    const columna8 = document.createElement('td');
+                    columna8.textContent = `${item.company.name}, ${item.company.catchPhrase}, ${item.company.bs}`;
+                    fila.appendChild(columna8);
+
+                    tbody.appendChild(fila);
+                });
                 mensaje.innerHTML = "Datos cargados correctamente ";
-            } else {
-                mensaje.innerHTML = "Ocurrió un error al realizar la búsqueda.";
+            }else{
+                mensaje.innerHTML = "ID incorrecta o no encontrada ";
             }
+        }else if(this.readyState == 4){
+            mensaje.innerHTML = "Ocurrió un error al realizar la búsqueda.";
+        }
     };
 }
 
-function limpiar() {
+function limpiar(){
     tbody.innerHTML = "";
     mensaje.innerHTML = "";
 }
