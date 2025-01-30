@@ -34,6 +34,7 @@ function buscarPelicula(){
 }
 
 function mostrar(data){
+    limpiar();
     let registros = 1;
     const fila = document.createElement('tr');
     const columna1 = document.createElement('td');
