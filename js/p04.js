@@ -10,7 +10,9 @@ btnLimpiar.addEventListener('click', limpiar);
 document.addEventListener("DOMContentLoaded", cargarRazas);
 
 function cargarRazas(){
-    fetch("https://dog.ceo/api/breeds/list/all")
+    const url = "https://dog.ceo/api/breeds/list/all";
+
+    fetch(url)
     .then(response => response.json())
     .then(data =>{
         if(data.status === "success"){
