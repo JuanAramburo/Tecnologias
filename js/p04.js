@@ -14,7 +14,7 @@ function cargarRazas(){
     fetch(url)
     .then(response => response.json())
     .then(data =>{
-        if(data.status === "success"){
+        if(data.status == "success"){
             Object.keys(data.message).forEach(raza =>{
                 if(data.message[raza].length > 0){
                     data.message[raza].forEach(subraza =>{
@@ -39,7 +39,7 @@ function cargarRazas(){
     
 function buscarImagen(){
     const raza = razas.value;
-    if(raza === "Seleccionar la Raza"){
+    if(raza == "Seleccionar la Raza"){
         mensaje.innerHTML = "Por favor, seleccione una raza válida.";
         return;
     }
@@ -53,7 +53,7 @@ function buscarImagen(){
         return response.json();
     })
     .then(data =>{
-        if(data.status === "error") mensaje.innerHTML = "No se encontró la raza";
+        if(data.status == "error") mensaje.innerHTML = "No se encontró la raza";
         else{
             imagen.src = data.message;
         }
