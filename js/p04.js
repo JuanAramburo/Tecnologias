@@ -20,7 +20,7 @@ function cargarRazas(){
                     data.message[raza].forEach(subraza =>{
                         let option = document.createElement("option");
                         option.value = `${raza}/${subraza}`;
-                        option.textContent = `${raza} ${subraza}`;
+                        option.textContent = `${subraza} ${raza}`;
                         razas.appendChild(option);
                     });
                 }else{
