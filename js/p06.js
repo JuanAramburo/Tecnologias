@@ -27,19 +27,19 @@ function buscarCoctel(){
 
 function mostrar(drinks){
     limpiar();
-    const cocktail = drinks[0];
-    poster.src = cocktail.strDrinkThumb;
-    titulo.textContent = cocktail.strDrink;
+    const coctel = drinks[0];
+    poster.src = coctel.strDrinkThumb;
+    titulo.textContent = coctel.strDrink;
     
     let ingredientes = "Ingredientes: ";
     for (let i=1;i<= 15;i++) {
-        let ingrediente = cocktail["strIngredient" + i];
-        let medida = cocktail["strMeasure" + i];
+        let ingrediente = coctel["strIngredient" + i];
+        let medida = coctel["strMeasure" + i];
         if (ingrediente) {
             ingredientes += `\n${ingrediente} ${medida ? '('+ medida +')':''}`;
         }
     }
-    parrafo.textContent = `Instrucciones: ${cocktail.strInstructions}`;
+    parrafo.textContent = `Instrucciones: ${coctel.strInstructions}`;
     parrafo2.textContent = `${ingredientes}`;
 }
 
